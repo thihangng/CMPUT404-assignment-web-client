@@ -50,7 +50,6 @@ class HTTPClient(object):
         return False
 
     def get_code(self, data):
-        # print(data)
         scheme = data.split("\r\n")[0]
         code = scheme.split()[1]
         return int(code)
