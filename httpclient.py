@@ -104,9 +104,14 @@ class HTTPClient(object):
         self.sendall(reqHeader)
         response = self.recvall(self.socket)  # Receive the response back
         self.close()
-       
+
         code = self.get_code(response)
         body = self.get_body(response)
+
+        print("---------response body starts here--------")
+        print(body)
+        print("---------response body ends here---------")
+
         return code, body
 
     def GET(self, url, args=None):
@@ -120,7 +125,7 @@ class HTTPClient(object):
         reqHeader  = "GET {} HTTP/1.1\r\nHost: {}\r\n".format(path, host)
         reqHeader += "Accept: */*\r\nConnection: close\r\n\r\n"
         code, body = self.sendRequest(reqHeader)
-    
+
         return HTTPResponse(code, body)
 
     def POST(self, url, args=None):
